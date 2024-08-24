@@ -1,13 +1,13 @@
 # dataset settings
 dataset_type = 'DeepGlobeDataset'
-data_root = '/home/qinjiaping/shaohua/dataset/deepglobe'
+data_root = '/data1/gyl/RS_DATASET/FBP'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
-crop_size = (1224, 1224)
+crop_size = (2500, 2500)
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations'),
-    dict(type='Resize', img_scale=(2448, 2448), ratio_range=(1., 1.)),
+    dict(type='Resize', img_scale=(5000, 5000), ratio_range=(1., 1.)),
     dict(type='RandomCrop', crop_size=crop_size, cat_max_ratio=0.75),
     dict(type='RandomFlip', prob=0.5),
     dict(type='RandomRotate', prob=0.5, degree=(90, 270)),
@@ -21,7 +21,7 @@ test_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(
         type='MultiScaleFlipAug',
-        img_scale=(2448, 2448),
+        img_scale=(5000, 5000),
         flip=False,
         transforms=[
             dict(type='Resize', keep_ratio=True),
@@ -32,23 +32,23 @@ test_pipeline = [
         ])
 ]
 data = dict(
-    samples_per_gpu=2,
-    workers_per_gpu=8,
+    samples_per_gpu=16,
+    workers_per_gpu=10,
     train=dict(
         type=dataset_type,
         data_root=data_root,
-        img_dir='train/rgb_images',
-        ann_dir='train/gid_labels',
+        img_dir='img_dir/train',
+        ann_dir='rgb2id/train',
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
         data_root=data_root,
-        img_dir='val/rgb_images',
-        ann_dir='val/gid_labels',
+        img_dir='img_dir/val',
+        ann_dir='rgb2id/val',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
         data_root=data_root,
-        img_dir='val/rgb_images',
-        ann_dir='val/gid_labels',
+        img_dir='img_dir/test',
+        ann_dir='rgb2id/test',
         pipeline=test_pipeline))

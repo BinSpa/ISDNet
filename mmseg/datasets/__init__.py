@@ -11,11 +11,13 @@ from .stare import STAREDataset
 from .voc import PascalVOCDataset
 from .deepglobe import DeepGlobeDataset
 from .inria_aerial import InriaAerialDataset
+from .gid import GIDDataset
+from .urur import URURDataset
 
 __all__ = [
     'CustomDataset', 'build_dataloader', 'ConcatDataset', 'RepeatDataset',
     'DATASETS', 'build_dataset', 'PIPELINES', 'CityscapesDataset',
     'PascalVOCDataset', 'ADE20KDataset', 'PascalContextDataset',
     'PascalContextDataset59', 'ChaseDB1Dataset', 'DRIVEDataset', 'HRFDataset',
-    'STAREDataset', 'DeepGlobeDataset', 'InriaAerialDataset'
+    'STAREDataset', 'DeepGlobeDataset', 'InriaAerialDataset', 'GIDDataset', 'URURDataset'
 ]
